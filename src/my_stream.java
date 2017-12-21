@@ -175,6 +175,37 @@ public class my_stream {
             e.printStackTrace();
         }
     }
+
+    // ---Object流
+    //    直接写入或者读出object流
+    public static void object_stream() {
+        System.out.println("----------");
+        rectange r1 = new rectange(1, 1, 100, 100);
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("rectange.txt"));
+            oos.writeObject(r1);
+            oos.close();
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("rectange.txt"));
+            rectange r2 = (rectange)ois.readObject();
+            System.out.println(r2.x + " " + r2.height);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static class rectange implements Serializable{
+        public int x;
+        public int y;
+        public int width;
+        public int height;
+        rectange(int x, int y, int width, int height){
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+        }
+    }
     /**
      * @param args
      */
@@ -186,8 +217,9 @@ public class my_stream {
         //buffer_reader(x);
 
         data_stream();
-        print_stream();
+        //print_stream();
         try_print("D:\\JAVA_PRO\\Test\\README.md", System.out);
+        object_stream();
     }
 
 }
