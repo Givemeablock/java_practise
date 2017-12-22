@@ -23,7 +23,7 @@ public class Test_DeadLock implements Runnable {
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException e) {
-
+//
                 }
                 synchronized (o1) {
                     System.out.println(flag + ":" + flag );
